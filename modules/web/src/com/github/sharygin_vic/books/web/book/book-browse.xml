@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.github.sharygin_vic.books.web.book.BookBrowse"
+        focusComponent="booksTable"
+        lookupComponent="booksTable"
+        messagesPack="com.github.sharygin_vic.books.web.book">
+    <dsContext>
+        <groupDatasource id="booksDs"
+                         class="com.github.sharygin_vic.books.entity.Book"
+                         view="book-view">
+            <query>
+                <![CDATA[select e from books$Book e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="booksTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="booksTable"
+                datasource="booksDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="booksTable"
+                    width="100%">
+            <actions>
+                <action id="edit"/>
+                <action id="import"/>
+                <action id="create"/>
+            </actions>
+            <columns>
+                <column id="id"/>
+                <column id="name"/>
+                <column id="author"/>
+                <column id="year"/>
+                <column id="edition"/>
+            </columns>
+            <rows datasource="booksDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="editButton"
+                        action="booksTable.edit"/>
+                <button id="importBtn"
+                        action="booksTable.import"
+                        caption="Import"
+                        tabIndex="1"/>
+                <button id="createButton"
+                        action="booksTable.create"
+                        tabIndex="2"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

@@ -6,9 +6,8 @@ import javax.annotation.Nullable;
 
 
 public enum State implements EnumClass<String> {
-
-    active("0"),
-    deleted("1");
+    ACTIVE("active"),
+    DELETED("deleted");
 
     private String id;
 

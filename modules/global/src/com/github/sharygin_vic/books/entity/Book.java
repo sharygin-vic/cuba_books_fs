@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import java.util.List;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import com.haulmont.cuba.core.entity.annotation.Lookup;
+import com.haulmont.cuba.core.entity.annotation.LookupType;
 
 @NamePattern("%s|name")
 @Table(name = "BOOKS_BOOK")
@@ -30,6 +32,7 @@ public class Book extends StandardEntity {
     @Column(name = "EDITION")
     protected String edition;
 
+    @Lookup(type = LookupType.DROPDOWN)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "AUTHOR_ID")
     protected Author author;

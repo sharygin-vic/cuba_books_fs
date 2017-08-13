@@ -11,7 +11,7 @@ import com.haulmont.chile.core.annotations.NamePattern;
 import java.util.List;
 import javax.persistence.OneToMany;
 
-@NamePattern("%s|lastName")
+@NamePattern("%s %s %s|lastName,firstName,middleName")
 @Table(name = "BOOKS_AUTHOR")
 @Entity(name = "books$Author")
 public class Author extends StandardEntity {

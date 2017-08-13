@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.github.sharygin_vic.books.web.book.BookEdit"
+        datasource="bookDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.github.sharygin_vic.books.web.book">
+    <dsContext>
+        <datasource id="bookDs"
+                    class="com.github.sharygin_vic.books.entity.Book"
+                    view="edit-book-view">
+            <collectionDatasource id="genreCollectionDs"
+                                  property="genreCollection"/>
+        </datasource>
+        <collectionDatasource id="authorsDs"
+                              class="com.github.sharygin_vic.books.entity.Author"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from books$Author e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="allGenresDs"
+                              class="com.github.sharygin_vic.books.entity.Genre">
+            <query>
+                <![CDATA[select e from books$Genre e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="bookDs">
+            <column width="250px">
+                <field editable="false"
+                       property="id"/>
+                <field property="state"/>
+                <field property="name"/>
+                <field optionsDatasource="authorsDs"
+                       property="author"/>
+                <field property="year"/>
+                <field property="edition"/>
+            </column>
+        </fieldGroup>
+        <groupBox id="genreCollectionBox"
+                  caption="msg://com.github.sharygin_vic.books.entity/Book.genreCollection"
+                  width="300px">
+            <tokenList id="genreCollectionTokenList"
+                       datasource="genreCollectionDs"
+                       inline="true">
+                <lookup optionsDatasource="allGenresDs"/>
+            </tokenList>
+        </groupBox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>
